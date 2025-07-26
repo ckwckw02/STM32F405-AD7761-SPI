@@ -21,12 +21,12 @@ This project demonstrates how to use the STM32F405 microcontroller as an SPI mas
 - Connecting wires for SPI interface
 
 ### Pin Configuration
-| STM32F405 Pin | Function | AD7761 Pin |
-|---------------|----------|------------|
-| PB13 | SPI2_SCK | SCLK |
-| PB14 | SPI2_MISO | DOUT |
-| PB15 | SPI2_MOSI | DIN |
-| PB12 | SPI2_NSS | CS |
+| STM32F405 Pin | Function | AD7761 Pin No | Function |
+|---------------|----------|------------|------------|
+| PB13 | SPI2_SCK |17 | SCLK |
+| PB14 | SPI2_MISO | 19 | SDO |
+| PB15 | SPI2_MOSI| 18 | SDI |
+| PB12 | SPI2_NSS | 16 |  /CS |
 
 *Note: Update the pin assignments based on your actual hardware configuration*
 
@@ -85,8 +85,7 @@ STM/
 
 2. **Flash to MCU**
    - Connect ST-Link debugger
-   - Right-click on project → Run As → STM32 C/C++ Application
-   - Or use the Debug configuration
+   - Use the Debug configuration
 
 ## 💻 Code Overview
 
@@ -95,8 +94,6 @@ STM/
 The main application implements:
 - SPI2 initialization and configuration
 - AD7761 register read/write operations
-- Data acquisition from ADC
-- Error handling and status monitoring
 
 ### Key Code Sections
 
@@ -112,8 +109,6 @@ volatile uint16_t response = 0;
 
 - **SPI Master Mode**: Configured for high-speed communication with AD7761
 - **Register Access**: Read and write operations to AD7761 configuration registers
-- **Data Acquisition**: Continuous or single-shot ADC readings
-- **Error Handling**: Robust error detection and recovery mechanisms
 
 ## 🔧 Configuration
 
@@ -122,48 +117,20 @@ volatile uint16_t response = 0;
 - **Data Size**: 16-bit
 - **Clock Polarity**: CPOL = 0
 - **Clock Phase**: CPHA = 1
-- **Baud Rate**: Configurable (refer to AD7761 datasheet)
+- **Baud Rate**: 50 MHz Maximum (refer to AD7761 datasheet)
 
 ### AD7761 Settings
 Modify the AD7761 configuration registers as needed for your application:
 - Input range settings
 - Sampling rate configuration
 - Filter settings
-- Reference voltage setup
 
-## 📈 Performance Metrics
-
-| Parameter | Value |
-|-----------|-------|
-| Max SPI Clock | Up to 20 MHz |
-| ADC Resolution | 24-bit |
-| Sampling Rate | Up to 128 kSPS |
-| Input Range | ±10V, ±5V, ±2.5V |
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **SPI Communication Fails**
-   - Check wiring connections
-   - Verify SPI clock frequency
-   - Ensure proper power supply levels
-
-2. **Incorrect ADC Readings**
-   - Verify reference voltage configuration
-   - Check input range settings
-   - Ensure proper grounding
-
-3. **Build Errors**
-   - Check STM32CubeIDE version compatibility
-   - Verify HAL library versions
-   - Clean and rebuild project
 
 ## 📚 Documentation
 
 - [STM32F405 Reference Manual](https://www.st.com/resource/en/reference_manual/dm00031020-stm32f405-415-stm32f407-417-stm32f427-437-and-stm32f429-439-advanced-arm-based-32-bit-mcus-stmicroelectronics.pdf)
 - [AD7761 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/AD7761.pdf)
-- [EVAL-AD7761FMCZ User Guide](https://www.analog.com/media/en/technical-documentation/user-guides/EVAL-AD7761FMCZ.pdf)
+- [EVAL-AD7761FMCZ User Guide](https://www.analog.com/media/en/technical-documentation/user-guides/EVAL-AD7761FMCZ-UG-949.pdf)
 
 ## 🤝 Contributing
 
@@ -179,7 +146,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **ckwckw02** - *Initial work* - [ckwckw02](https://github.com/ckwckw02)
 
 ## 🙏 Acknowledgments
 
@@ -190,17 +157,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📸 Images
 
 ### Hardware Setup
-![Hardware Setup](images/hardware_setup.jpg)
+![Hardware Setup](images/hardware.jpg)
 *STM32F405 connected to EVAL-AD7761FMCZ evaluation board*
 
 ### Schematic Diagram
-![Schematic](images/schematic.png)
+![Schematic](images/wiring.png)
 *SPI connection schematic between STM32F405 and AD7761*
 
 ### Software Screenshot
-![STM32CubeIDE](images/cubeide_screenshot.png)
-*Project opened in STM32CubeIDE*
+![STM32CubeIDE](images/response.png)
+*Project opened in debug on STM32CubeIDE*
 
----
-
-**Note**: Remember to create an `images/` folder in your repository and add relevant photos and diagrams to enhance the documentation.
+### DSO Screenshot
+![DSO](images/scope.png)
+*Oscilloscope (/CS, CLK, SDI SDO)*
