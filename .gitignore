@@ -1,0 +1,78 @@
+# STM32CubeIDE and Eclipse files
+.metadata/
+.settings/
+# Keep these project files as they're needed
+# .cproject
+# .project
+# .mxproject
+
+# Build directories
+Debug/
+Release/
+Build/
+
+# Object files
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.su
+*.cyclo
+*.d
+
+# Generated files
+*.tmp
+*.bak
+*~
+
+# IDE specific files
+*.launch
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+**/tmp/
+**/temp/
+
+# Don't ignore important project files
+!*.ioc
+!*.ld
+!Core/**
+!Drivers/**
+!Inc/**
+!Src/**
+
+# But ignore generated code in Drivers (uncomment if you want to exclude them)
+# Drivers/CMSIS/
+# Drivers/STM32F4xx_HAL_Driver/
+
+# Keep license files
+!LICENSE
+!LICENSE.txt
+!README.md
+
+# Images folder structure (but ignore actual images until added)
+images/.gitkeep
+
+# VS Code settings (if using)
+.vscode/
+
+# Windows specific
+*.lnk
+ehthumbs.db
+ehthumbs_vista.db
+
+# macOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux specific
+*~
+.nfs*
